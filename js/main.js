@@ -1,6 +1,7 @@
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 let enemies = [];
+let obstacles = []
 
 const gameEle = document.getElementById('game')
 const startEle = document.getElementById('start')
@@ -10,7 +11,7 @@ document.getElementById('startBtn').addEventListener('click', start)
 
 function start() {
     showGame()
-    animate()
+    animate(0)
 }
 
 function showGame() {
@@ -35,12 +36,15 @@ function hideStart() {
     startEle.style.display = 'none'
 }
 
-let lastTime = 0;
+let lastTime = 0
 
-function animate() {
+function animate(timeStamp) {
+    const deltaTime = timeStamp - lastTime
+    lastTime = timeStamp
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     background.draw(ctx);
     background.update();
+    handleObstacles(deltaTime)
     player.draw(ctx);
     player.update(input);
     requestAnimationFrame(animate);
