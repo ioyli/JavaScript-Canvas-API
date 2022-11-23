@@ -29,6 +29,7 @@ class Obstacle {
         this.x = this.gameWidth
         this.y = this.gameHeight - 300 // add random y position
         this.speed = 4
+        this.delete = false
     }
     draw(context) {
         //context.drawImage(this.image, this.x, this.y, this.width, this.height)
@@ -36,6 +37,7 @@ class Obstacle {
     }
     update() {
         this.x -= this.speed
+        if (this.x < 0 - this.width) this.delete = true
     }
 }
 
@@ -49,10 +51,14 @@ function handleObstacles(deltaTime) {
         obstacleTimer += deltaTime
     }
 
+    // draw each obstacle from array onto the canvas
     obstacles.forEach(obstacle => {
         obstacle.draw(ctx)
         obstacle.update()
     })
+
+    // remove obstacles that have moved past the canvas from obstacle array
+    obstacles = obstacles.filter(obstacle => !obstacle.delete)
 }
 
 const background = new Background(canvas.width, canvas.height)
