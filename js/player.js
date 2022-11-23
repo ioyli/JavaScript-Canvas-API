@@ -2,19 +2,19 @@
       constructor(){
         this.keys = [];
         window.addEventListener('keydown', e => {
-          if ((   e.key === 'ArrowDown' ||
-                  e.key === 'ArrowUp' ||
-                  e.key === 'ArrowLeft' ||
-                  e.key === 'ArrowRight')
+          if ((   e.key === 's' ||
+                  e.key === 'w' ||
+                  e.key === 'a' ||
+                  e.key === 'd')
                   && this.keys.indexOf(e.key) === -1){
             this.keys.push(e.key);
           }
         });
         window.addEventListener('keyup', e => {
-          if (    e.key === 'ArrowDown' ||
-                  e.key === 'ArrowUp' ||
-                  e.key === 'ArrowLeft' ||
-                  e.key === 'ArrowRight' ){
+          if (    e.key === 's' ||
+                  e.key === 'w' ||
+                  e.key === 'a' ||
+                  e.key === 'd' ){
             this.keys.splice(this.keys.indexOf(e.key), 1);
           }
         });
@@ -43,11 +43,11 @@
         context.drawImage(this.image, this.frameX, this.FrameY, this.width, this.height, this.x, this.y, this.width, this.height);
           }
     update(input){ 
-      if (input.keys.indexOf('ArrowRight') > -1){
+      if (input.keys.indexOf('d') > -1){
           this.speed = 5;
-        } else  if (input.keys.indexOf('ArrowLeft') > -1){
+        } else  if (input.keys.indexOf('a') > -1){
           this.speed = -5;
-        } else  if (input.keys.indexOf('ArrowUp') > -1 && this.onGround()){
+        } else  if (input.keys.indexOf('w') > -1 && this.onGround()){
           this.vy -= 30;
         } else {
           this.speed = 0;
