@@ -1,5 +1,5 @@
 Tehtävänjako:
 
-Io - Map
+Io - Tausta, esteet
 
-Joel - Player
+Joel - Pelaajan liike ja ammukset
