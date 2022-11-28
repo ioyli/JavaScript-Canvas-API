@@ -27,7 +27,7 @@ class Obstacle {
         this.height = 50
         //this.image = document.getElementById('ObstacleImage')
         this.x = this.gameWidth
-        this.y = this.gameHeight - 300 // add random y position
+        this.y = this.gameHeight - Math.floor((Math.random() * 250) + 250)
         this.speed = 4
         this.delete = false
     }
@@ -37,7 +37,7 @@ class Obstacle {
     }
     update() {
         this.x -= this.speed
-        if (this.x < 0 - this.width) this.delete = true
+        if (this.x < 0 - this.width) this.delete = true // mark obstacles past the canvas for deletion
     }
 }
 
@@ -55,14 +55,36 @@ function handleObstacles(deltaTime) {
     obstacles.forEach(obstacle => {
         obstacle.draw(ctx)
         obstacle.update()
+        obstacleCollision(player, obstacle)
     })
 
     // remove obstacles that have moved past the canvas from obstacle array
     obstacles = obstacles.filter(obstacle => !obstacle.delete)
 }
 
+function obstacleCollision(player, obstacle) {
+    if (player.x + player.width >= obstacle.x
+        && player.x <= obstacle.x + obstacle.width
+        && player.y + player.height >= obstacle.y
+        && player.y <= obstacle.y + obstacle.height) {
+            player.vy = 0
+
+            // enable jumping off of platform only if player is not under
+            if (input.keys.indexOf('w') > -1
+                && player.y < obstacle.y) {
+                player.vy -= 30;
+            }
+
+            // drop player to ground if under platform and not pressing W
+            if (player.y >= obstacle.y
+                && input.keys.indexOf('w') === -1) {
+                player.y = player.gameHeight - player.height
+            }
+    }
+}
+
 const background = new Background(canvas.width, canvas.height)
 
 let obstacleTimer = 0
-let obstacleInterval = 1000
-let randomObstacleInterval = Math.random() * 3000 + 500
+let obstacleInterval = 2000
+let randomObstacleInterval = Math.random() * 4000 + 500
