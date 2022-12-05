@@ -24,7 +24,7 @@ class Obstacle {
         this.gameWidth = gameWidth
         this.gameHeight = gameHeight
         this.width = Math.random() * 300 + 100
-        this.height = 50
+        this.height = 30
         //this.image = document.getElementById('ObstacleImage')
         this.x = this.gameWidth
         this.y = this.gameHeight - Math.floor((Math.random() * 250) + 250)
@@ -33,6 +33,7 @@ class Obstacle {
     }
     draw(context) {
         //context.drawImage(this.image, this.x, this.y, this.width, this.height)
+        context.fillStyle = 'black'
         context.fillRect(this.x, this.y, this.width, this.height)
     }
     update() {

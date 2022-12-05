@@ -8,8 +8,21 @@ const startEle = document.getElementById('start')
 const endEle = document.getElementById('end')
 
 document.getElementById('startBtn').addEventListener('click', start)
+document.getElementById('restartBtn').addEventListener('click', restart)
 
 function start() {
+    showGame()
+    animate(0)
+}
+
+function restart() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    gameOver = false
+    score = 0
+    enemies = []
+    obstacles = []
+    randomObstacleInterval = Math.random() * 4000 + 500
+    player.x = 0
     showGame()
     animate(0)
 }
@@ -41,12 +54,20 @@ let lastTime = 0
 function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime
     lastTime = timeStamp
+
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+
     background.draw(ctx);
     background.update();
+
     handleObstacles(deltaTime)
+
     player.draw(ctx);
     player.update(input);
-    requestAnimationFrame(animate);
+
+    displayStatus(ctx)
+
+    if (!gameOver) requestAnimationFrame(animate);
+
     handleEnemies();
 }

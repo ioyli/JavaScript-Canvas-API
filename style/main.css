@@ -3,7 +3,7 @@
     padding: 10px;
 }
 
-#startBtn{
+.startBtn{
     display: inline-block;
     padding: 15px 25px;
     font-size: 24px;
@@ -18,9 +18,9 @@
     box-shadow: 0 9px #999;
 }
 
-#startBtn:hover {background-color: #3e8e41}
+.startBtn:hover {background-color: #3e8e41}
 
-#startBtn:active{
+.startBtn:active{
     cursor: pointer;
     background-color: red;
     box-shadow: 0 5px #666;
@@ -41,6 +41,19 @@
     border-radius: 5px;
 }
 
-#enemyImage, #playerImage, #backgroundImage, #projectile{
+#enemyImage, #playerImage, #backgroundImage, #projectile {
     display: none; 
+}
+
+#end {
+    display: none;
+}
+
+#end .startBtn {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid black;
+    box-shadow: none;
 }
