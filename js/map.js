@@ -47,7 +47,7 @@ function handleObstacles(deltaTime) {
     if (obstacleTimer > obstacleInterval + randomObstacleInterval) {
         obstacles.push(new Obstacle(canvas.width, canvas.height))
         obstacleTimer = 0
-        randomObstacleInterval = Math.random() * 3000 + 500
+        randomObstacleInterval = Math.random() * 4000 + 500
     } else {
         obstacleTimer += deltaTime
     }

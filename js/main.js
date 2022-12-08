@@ -21,7 +21,6 @@ function restart() {
     score = 0
     enemies = []
     obstacles = []
-    randomObstacleInterval = Math.random() * 4000 + 500
     player.x = 0
     showGame()
     animate(0)
@@ -61,6 +60,7 @@ function animate(timeStamp) {
     background.update();
 
     handleObstacles(deltaTime)
+    handleEnemies(deltaTime);
 
     player.draw(ctx);
     player.update(input);
@@ -68,6 +68,4 @@ function animate(timeStamp) {
     displayStatus(ctx)
 
     if (!gameOver) requestAnimationFrame(animate);
-
-    handleEnemies();
 }

@@ -42,6 +42,7 @@ function handleEnemies(deltaTime){
     enemies.forEach(enemy => { 
         enemy.draw(ctx)
         enemy.update(deltaTime)
+        enemyCollision(player, enemy)
     });
     enemies = enemies.filter(enemy => !enemy.markedForDeletion)
 }

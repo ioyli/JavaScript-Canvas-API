@@ -1,6 +1,23 @@
 let score = 0
 let gameOver = false
 
+function enemyCollision(player, enemy) {
+    // check for collision between player and enemies using pythagorean theorem
+    // imaginary triangle, hypotenuse = distance between player and enemy
+    const distancex = enemy.x - player.x - 30
+    const distancey = enemy.y - player.y
+    const distance = Math.sqrt(distancex * distancex + distancey * distancey)
+
+    if (distance < enemy.width / 2 + player.width / 2) {
+         gameOver = true
+    }
+
+    // increase score for successfully avoiding enemies
+    if (enemy.markedForDeletion) {
+        score++
+    }
+}
+
 function displayStatus(context) {
     // score shadow
     context.textAlign = 'left'
