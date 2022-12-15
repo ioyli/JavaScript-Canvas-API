@@ -63,7 +63,7 @@ function animate(timeStamp) {
     handleEnemies(deltaTime);
 
     player.draw(ctx);
-    player.update(input);
+    player.update(input, deltaTime);
 
     displayStatus(ctx)
 

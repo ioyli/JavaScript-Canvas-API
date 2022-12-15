@@ -34,8 +34,8 @@ class Player {
     this.frameX = 0;
     this.maxFrame = 8;
     this.FrameY = 0;
-    this.fps = 20;
-    this.frameTimer = 0;
+    this.fps = 20
+    this.frameTimer = 0
     this.frameInterval = 1000/this.fps;
     this.speed = 0; 
     this.vy = 0;
@@ -44,12 +44,12 @@ class Player {
 draw(context){ 
     //context.fillStyle = 'white';
     //context.fillRect(this.x, this.y, this.width, this.height);
-    context.drawImage(this.image, this.frameX, this.FrameY, this.width, this.height, this.x, this.y, this.width, this.height);
+    context.drawImage(this.image, this.frameX * this.width, this.FrameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
 }
-update(deltaTime){ 
+update(input, deltaTime){ 
   // sprite animation
   if (this.frameTimer > this.frameInterval){ 
-      if (this.FrameX >= this.maxFrame) this.frameX = 0;
+      if (this.frameX >= this.maxFrame) this.frameX = 0;
       else this.frameX++;
       this.frameTimer = 0;
   } else { 
